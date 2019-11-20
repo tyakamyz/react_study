@@ -5,7 +5,7 @@
 
 3) 명령프롬프트 관리자 권한 실행
 
-4) pip install jupyterlab
+4) pip install jupyterlab	(2019.11.20 기준으로 3.8버젼에서 안됌)
 
 5) npm install -g ijavascript
 
