@@ -1,0 +1,12 @@
+1) python 설치
+    > 첫 번째 설치 화면에 표시되는 모든 체크박스를 반드시 체크
+    
+2) visualcppbuildtool.exe 설치
+
+3) 명령프롬프트 관리자 권한 실행
+
+4) pip install jupyterlab
+
+5) npm install -g ijavascript
+
+6) ijsinstall	
