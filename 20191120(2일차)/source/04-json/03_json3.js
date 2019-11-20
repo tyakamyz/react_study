@@ -1,5 +1,6 @@
 var centerPoint = {
 	x: 5,
+	y: 10
 };
 
 var circle = {

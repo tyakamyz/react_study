@@ -1,5 +1,5 @@
 var student = {
-	studno: 10101,
+	studno: 10101,			// json은 원래 항상 이름에 ""를 붙여야함. ex) "studno" : 10101
 	grade: 1,
 	name: "학생1",
 	phoneno: "010-1231-2342"

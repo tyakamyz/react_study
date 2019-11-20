@@ -1,4 +1,4 @@
-var student = [{
+var student = [{		//배열에도 json 타입을 넣을 수 있음 (보통 댓글관리할 때 많이 사용)
 	studno: 10101,
 	grade: 1,
 	name: "학생1"

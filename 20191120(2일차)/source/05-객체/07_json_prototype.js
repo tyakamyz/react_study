@@ -4,7 +4,7 @@ var Member = function(name, age) {
 	this.age = age;
 };
 
-Member.prototype = {
+Member.prototype = {		// prototype을 json으로 한번에 묶어서 생성함
 	setName: function(name) {
 		this.name = name;
 	},
@@ -22,12 +22,3 @@ obj.say();
 obj.setName('노드학생');
 obj.setAge(20);
 obj.say();
-
-
-
-
-
-
-
-
-
