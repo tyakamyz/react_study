@@ -11,7 +11,7 @@ const createTable = (rows, cols) => {
 
         for(let j=0; j<cols; j++){
             // <td> 단위 배열에 태그를 push(추가)한다.
-            td.push(<td>{i},{j}</td>);
+            td.push(<td>[{i},{j}]</td>);
         }
 
         // <tr> 태그 단위에 준비된 <td> 단위를 push 한다.
