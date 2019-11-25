@@ -1,0 +1,10 @@
+ - 작동 순서
+	*.js (JSX 구현 스크립트) => 컴포넌트
+	index.js (*.js를 로드)
+	index.html (로드한 컴포넌트를 출력할 위치 정의)
+	
+	
+ - VSCODE 확장기능 추천
+	reactjs code snippets
+		.rsc 엔터치면 기본틀 생성	(react snippets component)
+		
