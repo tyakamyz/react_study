@@ -1,0 +1,2 @@
+﻿ - Visual Studio Code 필수확장
+	.Prettier - Code formatter	// 자동 줄 정렬 (단축키 Alt + Shift + F)
