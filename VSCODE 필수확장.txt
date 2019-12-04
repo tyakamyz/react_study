@@ -1,2 +1,3 @@
 ﻿ - Visual Studio Code 필수확장
-	.Prettier - Code formatter	// 자동 줄 정렬 (단축키 Alt + Shift + F)
+	Prettier - Code formatter	// 자동 줄 정렬 (단축키 Alt + Shift + F)
+	rainbow brackets 	// 짝맞는 괄호 표시해줌
