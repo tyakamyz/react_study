@@ -1,3 +1,7 @@
 ﻿ - Visual Studio Code 필수확장
 	Prettier - Code formatter	// 자동 줄 정렬 (단축키 Alt + Shift + F)
 	rainbow brackets 	// 짝맞는 괄호 표시해줌
+
+	Markdown All in one	// VSCODE에서 'F1'키 누룬 후 적용시키면 실시간으로 Markdown 문법 반영
+				// 단축키 Ctrl + Shift + v
+	Markdown Preview Github Styling	// 디자인요소 추가

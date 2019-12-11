@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Hooks</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="hooks">Hooks</h1>
+<p>함수형 컴포넌트에서 상태값(state)를 관리하기 위한 기능으로 클래스형 컴포넌트의 LifeCycle에 대응된다.</p>
+<blockquote>
+<p>React v16.8부터 새로 추가되었음.</p>
+</blockquote>
+<p>쉽게 이야기하면 아래의 7가지 항목은 특정 상황에서 자동으로 호출되는 함수들을 의미함.</p>
+<h2 id="usestate">useState~</h2>
+<p>// javascript 1번째 방법
+import react, {useState} from 'react';</p>
+<pre><code><code><div>const [상태변수, 변수에대한setter함수] = useState(초기값);
+
+// javascript 2번째 방법
+const [상태변수, 변수에대한setter함수] = React.useState(초기값);
+
+ - 가장 기본적인 Hook 함수
+ - 함수형 컴포넌트에서 가변적인 상태를 처리할 수 있게 한다.
+ - 하나의 useState 함수는 하나의 상태 값만 관리할 수 있다.
+	- 컴포넌트에서 관리해야 할 상태가 여러 개라면 useState를 여러번 사용하면 된다.
+</div></code></code></pre>
+
+    </body>
+    </html>

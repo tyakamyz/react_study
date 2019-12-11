@@ -1,34 +1,63 @@
-/* eslint-disable import/first */           // 모든 import 구문이 가장 먼저 와야 한다는 규칙을 이 파일에 한해서 해제. 주석이 아님!
 import React from 'react';
-// HTML DOM에 대한 탐색 기능을 제공
-import {findDOMNode} from 'react-dom';
-// jQuery 참조
-import $ from 'jquery';
-// React 이외의 일반 Javascript에서 $와 jQuery를 인식할 수 있도록 지정
-window.$ = window.jQuery = $;
+
+/**
+ * 이 예제의 react 버전
+ * 
+ * https://github.com/chenglou/react-chosen
+ */
+
+// index.html 에서 참조하고 있는 jQuery를 React 안으로 가져옴.
+const $ = window.$;
 
 class MyJQueryChosen extends React.Component {
     render() {
         return (
             <div>
-                <select ref="select">
-                    <option value="봄">봄</option>
-                    <option value="여름">여름</option>
-                    <option value="가을">가을</option>
-                    <option value="겨울">겨울</option>
-                </select>
-
+                <h2>MyJQueryChosen</h2>
+                <select ref='select'>{this.props.children}</select>
                 <hr />
             </div>
         );
     }
 
-    componentDidMount(){
-        // 참조 ID에 의해 HTML DOM을 탐색한다.
-        const el = findDOMNode(this.refs.select);
-
+    /** 컴포넌트가 표시하는 HTML에 jQuery 플러그인 적용 */
+    componentDidMount() {
+        //----------------------------------
+        // 플러그인 연결하기
+        //----------------------------------
         // 탐색 결과를 jQuery 객체로 생성하여 jQuery 기능을 사용한다.
-        const currentEl = $(el);
+        this.$el = $(this.refs.select);
+        this.$el.chosen({
+            width: '200px'
+        });
+
+        //----------------------------------
+        // React 컴포넌트의 이벤트를 플러그인 이벤트로 연결
+        // --> 이벤트 연결을 위해서 반드시 이벤트 핸들러는 별도의 함수로서 존재해야 한다.
+        //----------------------------------
+        // change 이벤트가 발생했을 때 this 키워드의 충돌을 방지하기 위한 바인드 처리
+        this.handleChange = this.handleChange.bind(this);
+
+        // 컴포넌트 내에서의 change 이벤트를 jQuery plugin의 change 이벤트에 연결함
+        this.$el.on('change', this.handleChange);
+    }
+
+    /** 컴포넌트가 표시하는 HTML에 jQuery 플러그인 갱신 */
+    componentDidUpdate(prevProps) {
+        if (prevProps.children !== this.props.children) {
+            this.$el.trigger('chosen:updated');
+        }
+    }
+
+    /** 컴포넌트가 표시하는 HTML에 jQuery 플러그인 해제 */
+    componentWillUnmount() {
+        this.$el.off('change', this.handleChange);
+        this.$el.chosen('destroy');
+    }
+
+    /** onChange 이벤트가 발생한 경우 --> 컴포넌트의 props로 전달된 onChange 이벤트를 호출한다. */
+    handleChange(e) {
+        this.props.onChange(e.target.value);
     }
 }
 
