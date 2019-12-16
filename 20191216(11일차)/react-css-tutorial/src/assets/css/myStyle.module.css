@@ -1,0 +1,39 @@
+.world { list-style: none; padding: 0px; margin: 0px; }
+
+.world::after { display: block; content: ''; clear: both; float: none; }
+
+.hello {
+    background-color: #f0f;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px 25px;
+    font-weight: bold;
+    width: 100px;
+    height: 100px;
+    margin: 0 10px 10px 0;
+    float: left;
+}
+
+/** CSS파일에서의 이미지 참조는 CSS파일을 기준으로 한 상대경로 */
+:global .my-css-box {
+    background-image: url(../img/penguin.gif);
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+}
+
+/** ':global'이 적용된 클래스외에는 클래스이름이 모두 JS 변수화 된다
+    그러므로 '-' 특수문자를 사용할 수 없다. */
+/** ':global'이 적용된 경우를 제외하는 id 접근 불가 --> # 사용 못함 */
+.size_x {
+    width: 100px;
+}
+
+.size_y {
+    height: 100px;
+}
+
+.style {
+    background-color: #f60;
+    border: 1px solid #f0f;
+}

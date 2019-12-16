@@ -1,0 +1,53 @@
+@import './color.scss';
+@import './common.scss';
+
+/** 
+ * npm install --save node-sass
+ */
+
+ .my-scss {
+     margin: auto;      // .my-scss라는 클래스에 대한 css 속성
+
+     &:after {          // .my-scss:after
+         display: block;
+         content: '';
+         clear: both;
+         float: none;
+     }
+
+     .my-scss-box {     // .my-scss .my-scss-box
+         cursor: pointer;
+         float: left;
+
+         &.red{         // .my-scss .my-scss-box.red
+             // .red 클래스가 .box와 함께 사용되었을 때
+             background-color: $red;
+             @include my-mod(1);
+         }
+
+         &.green{
+            background-color: $green;
+            @include my-mod(2);
+        }
+
+        &.blue{
+            background-color: $blue;
+            @include my-mod(3);
+        }
+
+        &.orange{
+            background-color: $orange;
+            @include my-mod(4);
+        }
+
+        &.yellow{
+            background-color: $yellow;
+            @include my-mod(5);
+        }
+
+        &.pink{
+            background-color: $pink;
+            @include my-mod(6);
+        }
+     }
+ }

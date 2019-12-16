@@ -93,6 +93,7 @@ const MySimpleMemo = () => {
             {/* <h3>평균값: {getAverage(myInputList)}</h3> */}
             <h3>평균값: {avg}</h3>
             
+            <hr />
         </div>
     );
 };
