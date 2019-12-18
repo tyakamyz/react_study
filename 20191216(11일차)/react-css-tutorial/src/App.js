@@ -4,6 +4,8 @@ import MyCssClass from './MyCssClass';
 import MyCssModuleClass from './MyCssModuleClass';
 import MyScss from './MyScss';
 import MyScssModule from './MyScssModule';
+import MyStyledComponenet1 from './MyStyledComponenet1';
+import MyStyledComponenet2 from './MyStyledComponenet2';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       <MyCssModuleClass />
       <MyScss />
       <MyScssModule />
+      <MyStyledComponenet1 />
+      <MyStyledComponenet2 />
     </div>
   );
 }
