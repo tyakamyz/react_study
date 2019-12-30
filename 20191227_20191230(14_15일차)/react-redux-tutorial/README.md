@@ -65,3 +65,62 @@ npm install --save redux-devtools-extension
 
 * index.js : 최초 1회만 작업
 * modules/index.js : 기본 틀 작업 후, 모듈이 추가될 때 마다 갱신
+
+
+## 리덕스 미들웨어
+
+액션을 디스패치했을 때 리듀서에서 이를 처리하기에 앞서  실행되는 사전에 지정된 작업들.
+
+미들웨어는 index.js에서 스토어를 생성하는 과정에서 적용한다.
+
+### 미들웨어로 수행하는 처리들
+
+ - 전달받은 액션을 단순히 콘솔에 기록
+ - 전달받은 액션 정보를 기반으로 액션을 아예 취소
+ - 다른 종류의 액션을 추가로 디스패치
+
+
+### 동작 순서
+  [액션] --> [미들웨어] --> [리듀서] -->[스토어]
+
+
+### 미들웨어로 동작하는 함수의 기본 구조
+(꼭 해야하는 작업 ex. 로그 기록, 로그인 검사 등 에 쓰임)
+
+```js
+const loggerMiddleware = function loggerMiddleware(store){
+  return function(next){
+    return function(action){
+      // 미들웨어 기본구조
+    };
+  };
+};
+export default loggerMiddleware
+`
+
+ - 아래와 같이 축약 가능
+```js
+const loggerMiddleware = store => next => action => {
+      // 미들웨어 기본구조
+    };
+export default loggerMiddleware
+`
+
+- store : 리덕스 스토어 인스턴스
+- action : 디스패치된 액션
+- next : 다음 작업으로 넘어가기 위한 함수.
+         next(action)을 호출하면 다음 미들웨어로 액션을 넘겨준다.
+         그 다음 미들웨어가 없다면 리듀서에게 액션을 넘겨준다.
+
+미들웨어 내부에서 store.dispatch를 사용하면 첫 번째 미들웨어부터 다시 처리한다.
+
+만약 미들웨어에서 next(action)을 사용하지 않으면 액션이 리듀서에 전달되지 않는다.
+
+
+### 일반적으로 많이 사용하는 오픈소스 미들웨어
+
+ - redux-logger : 브라우저 콘솔에 로그를 기록하는 기능
+ - redux-thunk : 비동기 작업을 위한 미들웨어 (주로 Timer, Ajax 등)
+ - redux-sage : 비동기 작업을 위한 미들웨어 (주로 Timer, Ajax 등)
+
+ > redux-thunk와 redux-saga는 서로 경쟁 상태
