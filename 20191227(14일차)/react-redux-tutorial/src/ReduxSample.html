@@ -1,99 +1,95 @@
 <!DOCTYPE html>
-    <head>
-        <title>Redux Sample</title>
-    </head>
-    <body>
-        <h1 id="number">0</h1>
-        <button id="plusButton">+</button>
-        <button id="minusButton">-</button>
+<html>
+<head>
+	<title>Redux Sample</title>
+</head>
+<body>
+    <h1 id="number">0</h1>
+    <button id="plusButton">+</button>
+    <button id="minusButton">-</button>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.4/redux.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.4/redux.min.js"></script>
 
-        <script>
-            /** 액션 **/
-            // 어떤 컴포넌트가 겪는 상황을 구분하기 위한 문자열 변수
-            const PLUS = 'PLUS';
-            const MINUS = 'MINUS';
+    <script>
+        //------------------------ module 영역 ----------------------
+        /** 액션 */
+        // 어떤 컴포넌트가 겪는 상황을 구분하기 위한 문자열 변수들
+        const PLUS = 'PLUS';
+        const MINUS = 'MINUS';
 
-            /** 액션 생성 함수 */
-            // 액션 객체를 만들어서 리턴한다.
-            // 컴포넌트에 대한 액션 값의 수 만큼 정의하되 필요하다면 파라미터를 자유롭게 정의할 수 있다.
-            funtion plusAction(value){
-                // 액션 객체는 반드시 type이라는 key에 action값을 포함해야 한다.
-                // 그 밖의 데이터들은 개발자가 자율적으로 추가할 수 있다.
-                const action = {
-                    type: PLUS,
-                    diff: value
-                };
-                return action;
+        /** 액션 생성 함수 */
+        // 액션 객체를 만들어서 리턴한다.
+        // 컴포넌트에 대한 액션 값의 수 만큼 정의하되 필요하다면 파라미터를 자유롭게 정의할 수 있다.
+        function plusAction(value) {
+            // 액션 객체는 반드시 type이라는 key에 action값을 포함해야 한다.
+            // 그 밖의 데이터들은 개발자가 자율적으로 추가할 수 있다.
+            const action = {
+                type: PLUS,
+                diff: value
             };
+            return action;
+        };
 
-            const minusAction = value => ({type: MINUS, diff: value});
+        const minusAction = value => ({ type: MINUS, diff: value });
 
-            /** 상태값 */
-            // 단순한 json 객체
-            // 컴포넌트에서 다루고자 하는 데이터를 포함한다.
-            const initialState = {
+        /** 상태값 */
+        // 단순한 json 객체.
+        // 컴포넌트에서 다루고자 하는 데이터들을 포함한다.
+        const initialState = {
+            number: 0,
+            color: "#f60"
+        };
+
+        /** 리듀서 */
+        function myCountReducer(state=initialState, action=null) {
+            console.log(action);
+
+            const returnState = {
                 number: 0,
-                color: "#f00"
+                color: "#f60"
             };
 
-            /** 리듀서 **/
-            // state와 action을 파라미터로 받는 단순한 함수.
-            // state --> initialState
-            // action은 앞에서 정의한 action값
-            // 리듀서의 역활은 action이 OO일 때 state를 XX로 수정해서 리턴해라~!
-            funtion myCountReducer(state=initialState, action=null){
-                console.log(action);
-
-                const returnState = {
-                    number: 0,
-                    color: "#f00"
-                };
-
-                switch(action.type){
-                    case PLUS:
-                        returnState.number = state.number + action.diff;
-                        break;
-                    case MINUS:
-                        returnState.number = state.number - action.diff;
-                        break;
-                    default:
-                        return state;
-                }
-
-                returnState.color = returnState.number > 10? '#00f' : "#f00"
-
-                return returnState;
+            switch (action.type) {
+                case PLUS:
+                    returnState.number = state.number + action.diff;
+                    break;
+                case MINUS:
+                    returnState.number = state.number - action.diff;
+                    break;
+                default:
+                    return state;
             }
 
-            /** 스토어 **/
-            // redux.min.js에 정의된 Redux 모듈 안에서 createStore라는 함수를 받아옴
-            const {createStore} = Redux;
-            // 준비한 리듀서 함수를 스토어에 등록
-            const store = createStore(myCountReducer);
+            returnState.color = returnState.number > 10 ? "#2f77eb" : "#f60";
 
-            /** 구독 **/
-            // 스토어에 함수를 등록하는 처리.
-            // 스토어에 등록된 리듀서가 리턴하는 값을 조회해서 화면을 갱신할 기능을 구현한다.
-            store.subscribe(funtion(){
-                const state = store.getState();
-                document.getElementById('number').innerText = state.number;
-                document.getElementById('number').style.color = state.color
-                console.log('스토어를 구독하는 함수가 실행됨');
-            });
-            
-            /** 디스패치 **/
-            // 단순하게 보면 액션함수를 호출하는 행위
-            // 액션 생성함수의 리턴값을 store에 전달하면 스토어를 구독하고 있는 함수가 실행되어 화면을 갱신한다.
-            document.getElementById("plusButton").addEventListener("click", () => {
-                // {type: "PLUS", diff: 25}
-                store.dispatch(plusAction(25));
-            });
-            document.getElementById("minusButton").addEventListener("click", () => {
-                store.dispatch(minusAction(10));
-            });
+            return returnState;
+        };
 
-        </script>
-    </body>
+        // 스토어 생성
+        const { createStore } = Redux;
+        const store = createStore(myCountReducer);
+
+        /** 구독 */
+        // 스토어에 함수를 등록하는 처리.
+        // 스토어에 등록된 리듀서가 리턴하는 값을 조회해서 화면을 갱신할 기능을 구현한다.
+        store.subscribe(function() {
+            const state = store.getState();
+            document.getElementById('number').innerText = state.number;
+            document.getElementById('number').style.color = state.color;
+            console.log('스토어를 구독하는 함수가 실행됨');
+        });
+
+        /** 디스패치 */
+        // 단순하게 보면 액션함수를 호출하는 행위
+        // 액션 생성함수의 리턴값을 store에 전달하면 스토어를 구독하고 있는 함수가 실행되어 화면을 갱신한다.
+        document.getElementById('plusButton').addEventListener('click', () => {
+            // {type: "PLUS", diff: 25}
+            store.dispatch(plusAction(25));
+        });
+
+        document.getElementById('minusButton').addEventListener('click', () => {
+            store.dispatch(minusAction(10));
+        });
+    </script>
+</body>
 </html>
