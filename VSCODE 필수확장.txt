@@ -1,4 +1,7 @@
 ﻿ - Visual Studio Code 필수확장
+	Reactjs code snippets	// 자동완성
+	(charalampos karypidis 제작자 이름 꼭 확인)
+
 	Prettier - Code formatter	// 자동 줄 정렬 (단축키 Alt + Shift + F)
 	rainbow brackets 	// 짝맞는 괄호 표시해줌
 

@@ -40,9 +40,15 @@ const NewsList = (props) => {
     // setNewsData -> 값을 변경하기위해 사용하는 함수 (setter)
     const [newsData, setNewsData] = React.useState([]);
 
+    // Ajax 연동 전, 후를 판단하기 위한 boolean값
+    const [loading, setLoading] = React.useState(false);
+
     // 비동기 작업 수행을 위해 async를 명시
     React.useEffect(() => {
         async function getNewsList() {
+            // Ajax 통신 시작을 알림
+            setLoading(true);
+
             // OpenAPI 주소 정의
             let apiUrl = "https://newsapi.org/v2/top-headlines?country=kr&apiKey=0a8c4202385d4ec1bb93b7e277b3c51f";
 
@@ -61,9 +67,15 @@ const NewsList = (props) => {
             console.debug("url=%s", apiUrl);
             console.debug(result);
             console.groupEnd();
+
+            setLoading(false);
         }
         getNewsList();
     }, [props.category]);
+
+    if(loading){
+        return <h2>Now Loading...</h2>
+    }
 
     return (
         <NewsListBox>
