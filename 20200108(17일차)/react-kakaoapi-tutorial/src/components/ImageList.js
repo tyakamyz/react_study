@@ -37,7 +37,7 @@ const ImageList = props => {
                     // 카카오에서 요구하는 검색에 필요한 GET 파라미터
                     params: { query: props.query },
                     // 인증에 필요한 HTTP Header 정보 설정
-                    headers: { Authorization: "KakaoAK 4429c92ca9d864912208bd3556a62214" }
+                    headers: { Authorization: "KakaoAK 8cac4461d0c1dd0fac400af775ba6fc8" }
                 });
 
                 // 정상 데이터 처리를 확인
