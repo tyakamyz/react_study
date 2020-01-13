@@ -37,8 +37,10 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logge
 // 렌더링 처리를 위해 <Provider store={store}>로 감싸줌
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter><App /></BrowserRouter>, document.getElementById('root')
-    </Provider>
+        <BrowserRouter><App /></BrowserRouter>
+    </Provider>,
+    document.getElementById('root')
+    
 );
 
 serviceWorker.unregister();

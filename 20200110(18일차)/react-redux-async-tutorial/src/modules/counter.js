@@ -17,10 +17,40 @@ export const minusAction = createAction(MINUS);
 const initialState = 0;
 
 /** 상태값에 따라 동작할 액션 함수 정의 */
+// export default handleActions(
+//     {
+//         [PLUS]: (state, action) => state + 1,
+//         [MINUS]: (state, action) => state -1
+//     },
+//     initialState
+// );
+
 export default handleActions(
     {
-        [PLUS]: (state, action) => state + 1,
-        [MINUS]: (state, action) => state -1
+        [PLUS]: (state, action) => {
+            console.log(action);
+            return state + action.payload.number;
+        },
+        [MINUS]: (state, action) => {
+            console.log(action);
+            return state - action.payload.number;
+        }
     },
     initialState
 );
+
+/** 비동기 작업을 수행할 함수 정의 - 이 안에서 action함수들을 dispatch(호출)한다. */
+// 이렇게 정의된 함수들은 컴포넌트의 props에 포함된다.
+export const plusAsync = () => dispatch => {
+    // 1초 뒤 액션 디스패치
+    setTimeout(() => {
+        dispatch(plusAction({number: 10}));
+    }, 1000);
+};
+
+export const minusAsync = () => dispatch => {
+    // 1초 뒤 액션 디스패치
+    setTimeout(() => {
+        dispatch(minusAction({number: 5}));
+    }, 1000);
+};
